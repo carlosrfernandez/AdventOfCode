@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AdventOfCode.Day2
@@ -26,15 +25,44 @@ namespace AdventOfCode.Day2
                 "axcye",
                 "wvxyz"
             };*/
-            var input = GetChars(rf);
+            var input = GetChars(rf).ToList();
+            var res = DiffSet(input[0], input.Skip(1).ToArray());
+
+            
+            // fonbwmjquwtapeyzikghtvdxl
+            // Console.WriteLine($"{Day} puzzle {PuzzleNumber} result {string.Join("", result)}");
             // implement
         }
 
-        private static int Diff(IEnumerable<char> part1, IEnumerable<char> part2)
+        private static (char[], char[]) DiffSet(char[] head, char[][] tail)
         {
-           
-            var count = part1.Except(part2).Count();
-            return count;
+            foreach (var ch in tail)
+            {
+                if (Diff(head, ch) != 1)
+                {
+                    continue;
+                }
+
+                return (head, ch);
+            }
+
+            return DiffSet(tail[0], tail.Skip(1).ToArray());
+        }
+
+        private static int Diff(char[] part1, char[] part2)
+        {
+            var difference = 0;
+            for (var i = 0; i < part1.Length; i++)
+            {
+                if (part1[i] != part2[i])
+                {
+                    difference++;
+                }
+
+                if (difference > 1) return 2;
+            }
+
+            return difference;
         }
 
         private static List<char[]> GetChars(IEnumerable<string> s)

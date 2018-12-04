@@ -25,6 +25,10 @@ namespace AdventOfCode
 
             var dp2 = new Day2.Puzzle2(day2Input);
             dp2.Run();
+
+            var d3P1 = new Day3.Day3Puzzles("inputD3.txt");
+            d3P1.Run();
+
             Console.ReadKey();
         }
     }

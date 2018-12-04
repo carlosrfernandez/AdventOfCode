@@ -26,7 +26,7 @@ namespace AdventOfCode.Day3
                 var result = matrix.GetOccupiedSize();
                 Console.WriteLine($"{Day} puzzle {PuzzleNumber} result: {result}");
                 //var part2 = matrix.GetIdOfLoneWolf();
-                Console.WriteLine($"{Day} puzzle 2 result: {part2}");
+                //Console.WriteLine($"{Day} puzzle 2 result: {part2}");
             }
             else
             {

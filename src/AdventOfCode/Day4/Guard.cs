@@ -18,33 +18,34 @@ namespace AdventOfCode.Day4
 
         public static Guard NewGuardBeginsShift(int id, DateTime startOfShift)
         {
-            return new Guard(id, new List<NightEvent> { new NightEvent(startOfShift, Actions.BeginShift)});
+            return new Guard(id, new List<NightEvent> { new NightEvent(id, startOfShift, Actions.BeginShift)});
         }
 
         public Guard BeginShift(DateTime dateTime)
         {
-            var action = new NightEvent(dateTime, Actions.BeginShift);
+            var action = new NightEvent(Id, dateTime, Actions.BeginShift);
             _schedule.Add(action);
             return new Guard(Id, _schedule);
         }
 
         public Guard FallAsleep(DateTime dateTime)
         {
-            var action = new NightEvent(dateTime, Actions.FallAsleep);
+            var action = new NightEvent(Id, dateTime, Actions.FallAsleep);
             _schedule.Add(action);
             return new Guard(Id, _schedule);
         }
 
         public Guard WakeUp(DateTime wakeUpTime)
         {
-            _schedule.Add(new NightEvent(wakeUpTime, Actions.WakeUp));
+            _schedule.Add(new NightEvent(Id, wakeUpTime, Actions.WakeUp));
             return new Guard(Id, _schedule);
         }
 
-        public int GetBestSleepTime()
+        /*public int GetBestSleepTime()
         {
+            var timeAsleep = _schedule.Where(x => x.Action.Equals(Actions.FallAsleep)).ToList();
             var g = _schedule.Where(x => x.Action == Actions.FallAsleep).GroupBy(x => x.EventTime.Hour);
             return 1;
-        }
+        }*/
     }
 }

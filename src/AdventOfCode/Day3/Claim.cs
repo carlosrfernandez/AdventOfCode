@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AdventOfCode.Day3
 {
-    public class ClaimsStructure
+    public class Claim
     {
         public int Id { get; }
         public int InchesFromLeft { get; }
@@ -11,16 +11,19 @@ namespace AdventOfCode.Day3
         public int Width { get; }
         public int Height { get; }
 
-        private ClaimsStructure(int id, int inchesFromLeft, int inchesFromTop, int width, int height)
+        public List<int> Neighbors { get; }
+
+        private Claim(int id, int inchesFromLeft, int inchesFromTop, int width, int height)
         {
             Id = id;
             InchesFromLeft = inchesFromLeft;
             InchesFromTop = inchesFromTop;
             Height = height;
             Width = width;
+            Neighbors = new List<int>();
         }
 
-        public static ClaimsStructure ParseExact(string token)
+        public static Claim ParseExact(string token)
         {
             // could do regex here
             var strings = token.Split(' ');
@@ -33,7 +36,13 @@ namespace AdventOfCode.Day3
             var width = int.Parse(dimensions[0]);
             var height = int.Parse(dimensions[1]);
 
-            return new ClaimsStructure(id, inchesFromLeft, inchesFromTop, width, height);
+            return new Claim(id, inchesFromLeft, inchesFromTop, width, height);
+        }
+
+        public void AddNeighborId(int id)
+        {
+            if (Neighbors.Contains(id)) return;
+            Neighbors.Add(id);
         }
 
         public IEnumerable<(int x, int y , int id)> GetOccupation()

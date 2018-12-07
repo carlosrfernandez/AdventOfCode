@@ -10,7 +10,7 @@ namespace AdventOfCode
         static void Main()
         {
             Console.WriteLine("Hello AdventOfCode 2018!");
-            var day1Input = Path.Combine(BaseFolder, "input.txt");
+            var day1Input = Path.Combine(BaseFolder, "inputD1.txt");
 
 
             var p1 = new Puzzle1(day1Input);
@@ -29,6 +29,8 @@ namespace AdventOfCode
             var d3P1 = new Day3.Day3Puzzles("inputD3.txt");
             d3P1.Run();
 
+            var d4p1 = new Day4.PuzzleDay4("inputD4.txt");
+            d4p1.Run();
             Console.ReadKey();
         }
     }

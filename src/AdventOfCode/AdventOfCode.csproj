@@ -8,13 +8,17 @@
   <ItemGroup>
     <None Remove="Day1\input.txt" />
     <None Remove="inputD3.txt" />
+    <None Remove="inputD4.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="inputD4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="inputD3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="input.txt">
+    <Content Include="inputD1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

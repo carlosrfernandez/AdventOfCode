@@ -7,7 +7,7 @@ namespace AdventOfCode.Day4
     public class Guard
     {
         private readonly List<NightEvent> _schedule;
-        private Guard(int id, IEnumerable<NightEvent> schedule)
+        public Guard(int id, IEnumerable<NightEvent> schedule)
         {
             _schedule = schedule as List<NightEvent>;
             Id = id;

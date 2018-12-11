@@ -9,13 +9,14 @@ namespace AdventOfCode.Day4
 {
     public class ScheduleRepository
     {
+        // storing this here for now... might need it later.
         private readonly List<RawSchedule> _rawSchedule;
 
         public ScheduleRepository(IEnumerable<RawSchedule> rawSchedule)
         {
             _rawSchedule = rawSchedule.OrderBy(x => x.Time).ToList();
         }
-
+        
         public IObservable<NightEvent> GetScheduleStream()
         {
             var regex = new Regex("\\d");
@@ -47,8 +48,15 @@ namespace AdventOfCode.Day4
                     }
                 });
 
+                obs.OnCompleted();
+
                 return Disposable.Empty;
             });
+        }
+
+        public IObservable<NightEvent> GetGuardStream(int guardId)
+        {
+            return GetScheduleStream().Where(x => x.GuardId == guardId);
         }
     }
 }
